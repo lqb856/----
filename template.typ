@@ -2,7 +2,7 @@
 #let font = (
   main: "IBM Plex Serif",
   mono: "IBM Plex Mono",
-  cjk: "Noto Serif CJK SC",
+  cjk: "Source Han Serif SC",
 )
 
 // 图标
@@ -43,7 +43,7 @@
   set text(font: (font.main, font.cjk), size: size, lang: "zh")
 
   // 标题及小标题样式
-  show heading: set text(themeColor, 1.1em)
+  show heading: set text(themeColor, 1.1em,weight: "bold")
 
   // 二级标题下加一条横线
   show heading.where(level: 2): it => stack(
@@ -145,7 +145,7 @@
           dir.content
         }
       })
-    }).join(h(0.5em) + "·" + h(0.5em))
+    }).join(h(0.5em) + "·" )
     v(0.5em)
 }
 
@@ -172,8 +172,46 @@
 ) = {
   v(0.25em)
   grid(
-    columns: (30%, 1fr, auto),
+    columns: (40%, 1fr, auto),
     gutter: (0em),
     title, desc, endnote
   )
 }
+
+#let projectItem(
+  title,
+  desc
+) = {
+  v(0.25em)
+  grid(
+    columns: (1fr, auto),
+    gutter: (0em),
+    title, desc
+  )
+}
+
+#let awardItem(
+  title,
+  desc,
+  date
+) = {
+  v(0.25em)
+  grid(
+    columns: (60%, 1fr, auto),
+    gutter: (1em),
+    title, desc, date
+  )
+}
+
+#let academicItem(
+  title,
+  state
+) = {
+  v(0.25em)
+  grid(
+    columns: (1fr,  auto),
+    gutter: (0em),
+    title, state
+  )
+}
+)
