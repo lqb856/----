@@ -17,9 +17,9 @@
 
 // 主体
 #let resume(
-  size: 10pt,
+  size: 8pt,
   themeColor: rgb(38, 38, 125),
-  top: 1.5cm,
+  top: 1.0cm,
   bottom: 2cm,
   left: 2cm,
   right: 2cm,
@@ -43,7 +43,7 @@
   set text(font: (font.main, font.cjk), size: size, lang: "zh")
 
   // 标题及小标题样式
-  show heading: set text(themeColor, 1.1em,weight: "bold")
+  show heading: set text(themeColor, 1.0em,weight: "bold")
 
   // 二级标题下加一条横线
   show heading.where(level: 2): it => stack(
@@ -101,7 +101,7 @@
 
 // 带竖线的侧边栏
 #let sidebar(side, content, withLine: true, sideWidth: 12%) = layout(size => {
-  let sideSize = measure(width: size.width,height: size.height,side)
+  let sideSize = measure(width: size.width,height: size.height, side)
   let contentSize = measure(width: size.width * (100% - sideWidth),height: size.height,content)
   let height = calc.max(sideSize.height, contentSize.height) + 0.5em
   grid(
@@ -214,4 +214,23 @@
     title, state
   )
 }
-)
+
+#let resume_item(proj_title, proj_time, proj_postion, proj_rule) = {
+  // [**#proj_title**]
+  text([#proj_title], weight: "bold")
+  h(1fr)
+  if proj_time != none {
+    [#proj_time]
+  }
+  if proj_postion != none or proj_rule != none {
+    linebreak()
+  }   
+  if proj_postion != none {
+    [#proj_postion]
+  }
+  h(1fr)
+  if(proj_rule != none) {
+    [#proj_rule]
+  }
+  linebreak()
+}
